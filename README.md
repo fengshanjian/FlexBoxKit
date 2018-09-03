@@ -7,11 +7,10 @@
 ## 特点
 
 * Flexbox Layout；
-* 链式调用，布局方便；
 * 虚拟视图 Div；
 * TableView 支持自动高度、布局缓存，contentView 缓存，和自动 cache 失效机制；
 * ScrollView 支持自适应 contentSize；
-* 异步计算布局。
+* 依赖yoga最新版本
 
 ## 预览
 
