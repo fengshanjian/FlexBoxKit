@@ -1,0 +1,8 @@
+use_frameworks!
+
+target 'FlexBoxLayout_Example' do
+  pod 'FlexBoxKit', :path => '../'
+  target 'FlexBoxLayout_Tests' do
+    inherit! :search_paths
+  end
+end

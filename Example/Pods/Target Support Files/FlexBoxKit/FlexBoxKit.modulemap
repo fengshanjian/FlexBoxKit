@@ -1,0 +1,6 @@
+framework module FlexBoxKit {
+  umbrella header "FlexBoxKit-umbrella.h"
+
+  export *
+  module * { export * }
+}

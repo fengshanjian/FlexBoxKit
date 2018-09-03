@@ -1,0 +1,30 @@
+{
+  "name": "FlexBoxKit",
+  "version": "0.0.1",
+  "summary": "iOS Flexbox layout Kit",
+  "description": "iOS Flexbox layout Kit.",
+  "homepage": "https://github.com/carlSQ/FlexBoxLayout",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": "Master",
+  "source": {
+    "git": "https://github.com/carlSQ/FlexBoxLayout.git",
+    "tag": "0.0.1"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "ios": {
+    "frameworks": "UIKit"
+  },
+  "source_files": "FlexBoxKit/Source/*.{h,m,swift}",
+  "dependencies": {
+    "Yoga": [
+      "~> 1.8"
+    ]
+  },
+  "public_header_files": "YogaKit/Source/{FBKLayout,UIView+FBKit}.h",
+  "private_header_files": "YogaKit/Source/FBKLayout+Private.h"
+}
