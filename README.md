@@ -1,6 +1,5 @@
-# FlexBoxLayout
+# FlexBoxKit
 
-[![CI Status](http://img.shields.io/travis/LPD-iOS/FlexBoxLayout.svg?style=flat)](https://travis-ci.org/carlSQ/FlexBoxLayout)
 [![Version](https://img.shields.io/cocoapods/v/FlexBoxLayout.svg?style=flat)](http://cocoapods.org/pods/FlexBoxLayout)
 [![License](https://img.shields.io/cocoapods/l/FlexBoxLayout.svg?style=flat)](http://cocoapods.org/pods/FlexBoxLayout)
 [![Platform](https://img.shields.io/cocoapods/p/FlexBoxLayout.svg?style=flat)](http://cocoapods.org/pods/FlexBoxLayout)
