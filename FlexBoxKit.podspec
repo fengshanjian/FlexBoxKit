@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name             = 'FlexBoxKit'
-  s.version          = '0.0.2'
+  s.version          = '0.1.0'
   s.summary          = 'iOS Flexbox layout Kit'
 
   s.description      = <<-DESC
@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
 
   s.homepage         = 'https://github.com/fengshanjian/FlexBoxKit'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.authors          = 'Master'
+  s.authors          = 'will'
   s.source           = { :git => 'https://github.com/fengshanjian/FlexBoxKit.git', :tag => s.version.to_s }
 
   s.platform              = :ios
