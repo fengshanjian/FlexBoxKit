@@ -1,14 +1,14 @@
 //
-//  CSSAppDelegate.m
-//  CSSLayout
+//  FBKAppDelegate.m
+//  FlexBoxLayout
 //
-//  Created by qiang.shen on 01/03/2017.
-//  Copyright (c) 2017 qiang.shen. All rights reserved.
+//  Created by will on 2018/8/29.
+//  Copyright © 2018年 will. All rights reserved.
 //
 
-#import "FBAppDelegate.h"
+#import "FBKAppDelegate.h"
 
-@implementation FBAppDelegate
+@implementation FBKAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

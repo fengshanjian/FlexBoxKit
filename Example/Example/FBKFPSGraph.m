@@ -1,14 +1,14 @@
 //
-//  CSSFPSGraph.m
-//  CSSLayout
+//  FBKFPSGraph.m
+//  FlexBoxLayout
 //
-//  Created by 沈强 on 2017/1/11.
-//  Copyright © 2017年 qiang.shen. All rights reserved.
+//  Created by will on 2018/8/29.
+//  Copyright © 2018年 will. All rights reserved.
 //
 
-#import "FBFPSGraph.h"
+#import "FBKFPSGraph.h"
 
-@interface FBFPSGraph()
+@interface FBKFPSGraph()
 
 @property (nonatomic, strong, readonly) CAShapeLayer *graph;
 
@@ -16,7 +16,7 @@
 
 @end
 
-@implementation FBFPSGraph {
+@implementation FBKFPSGraph {
   CAShapeLayer *_graph;
   UILabel *_label;
   

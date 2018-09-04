@@ -66,6 +66,7 @@ static const void *kFBKChildrenKey = &kFBKChildrenKey;
 
 - (void)addChild:(id<FBKLayoutProtocol>)child {
     NSMutableArray *newChildren = [[self children] mutableCopy];
+    if([newChildren containsObject:child]) return;
     [newChildren addObject:child];
     objc_setAssociatedObject(self, kFBKChildrenKey, newChildren, OBJC_ASSOCIATION_COPY_NONATOMIC);
     [self addChildToView:child];
@@ -77,6 +78,7 @@ static const void *kFBKChildrenKey = &kFBKChildrenKey;
 }
 
 - (void)removeAllChildren {
+    [[self layout] removeAllChildren];
     objc_setAssociatedObject(self, kFBKChildrenKey, [NSMutableArray array], OBJC_ASSOCIATION_COPY_NONATOMIC);
     for (UIView *view in self.subviews) {
         [view removeFromSuperview];
@@ -87,10 +89,29 @@ static const void *kFBKChildrenKey = &kFBKChildrenKey;
     NSMutableArray *newChildren = [[self children] mutableCopy];
     if([newChildren containsObject:child]){
         [newChildren removeObject:child];
+        [[self layout] removeChild:child.layout];
     }
     objc_setAssociatedObject(self, kFBKChildrenKey, newChildren, OBJC_ASSOCIATION_COPY_NONATOMIC);
     [self removeChildFromView:child];
 }
+
+-(void)insertChild:(id<FBKLayoutProtocol>)child atIndex:(NSInteger)index{
+    NSMutableArray *newChildren = [[self children] mutableCopy];
+    if([newChildren containsObject:child]) return;
+    [newChildren insertObject:child atIndex:index];
+    objc_setAssociatedObject(self, kFBKChildrenKey, newChildren, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    [self addChildToView:child];
+}
+
+-(void)removeChildAtIndex:(NSInteger)index{
+    NSMutableArray *newChildren = [[self children] mutableCopy];
+    id<FBKLayoutProtocol> child = newChildren[index];
+    [newChildren removeObjectAtIndex:index];
+    [[self layout] removeChild:child.layout];
+    objc_setAssociatedObject(self, kFBKChildrenKey, newChildren, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    [self removeChildFromView:child];
+}
+
 
 #pragma mark private method
 - (void)addChildToView:(id<FBKLayoutProtocol>)child {

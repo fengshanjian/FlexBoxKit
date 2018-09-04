@@ -1,19 +1,19 @@
 //
-//  FBTableViewController.m
-//  FBLayout
+//  FBKTableViewController.m
+//  FlexBoxLayout
 //
-//  Created by 沈强 on 2017/1/11.
-//  Copyright © 2017年 qiang.shen. All rights reserved.
+//  Created by will on 2018/8/29.
+//  Copyright © 2018年 will. All rights reserved.
 //
 
-#import "FBTableViewController.h"
-#import "FBFeedModel.h"
+#import "FBKTableViewController.h"
+#import "FBKFeedModel.h"
 #import "FlexBoxKit.h"
 #import "FBKFeedView.h"
-#import "FBFPSGraph.h"
+#import "FBKFPSGraph.h"
 
 
-@interface FBTableViewController ()
+@interface FBKTableViewController ()
 
 @property(nonatomic, strong)NSMutableArray *feeds;
 
@@ -21,7 +21,7 @@
 
 @end
 
-@implementation FBTableViewController
+@implementation FBKTableViewController
 
 - (void)viewDidLoad {
   [super viewDidLoad];
@@ -29,7 +29,7 @@
   UIRefreshControl *refreshControl = [UIRefreshControl new];
   [refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
   self.refreshControl = refreshControl;
-  FBFPSGraph *graph =  [[FBFPSGraph alloc] initWithFrame:CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.width, 30)
+  FBKFPSGraph *graph =  [[FBKFPSGraph alloc] initWithFrame:CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.width, 30)
                                color:[UIColor lightGrayColor]];
   [[UIApplication sharedApplication].keyWindow addSubview:graph];
   [self loadData];
@@ -49,7 +49,7 @@
   _feeds = @[].mutableCopy;
   
   [feedDicts enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-    [_feeds addObject:[[FBFeedModel alloc] initWithDictionary:obj]];
+    [_feeds addObject:[[FBKFeedModel alloc] initWithDictionary:obj]];
   }];
   
   _sections = [NSMutableArray arrayWithCapacity:1];

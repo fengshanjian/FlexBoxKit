@@ -1,19 +1,19 @@
 //
-//  FBViewController.m
-//  FBLayout
+//  FBKViewController.m
+//  FlexBoxLayout
 //
-//  Created by qiang.shen on 01/03/2017.
-//  Copyright (c) 2017 qiang.shen. All rights reserved.
+//  Created by will on 2018/8/29.
+//  Copyright © 2018年 will. All rights reserved.
 //
 
-#import "FBViewController.h"
+#import "FBKViewController.h"
 
 #import "FlexBoxKit.h"
-@interface FBViewController ()
+@interface FBKViewController ()
 
 @end
 
-@implementation FBViewController
+@implementation FBKViewController
 
 
 - (void)viewDidLoad {
@@ -100,6 +100,7 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(6 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         UIView *view5 = [UIView new];
         view5.backgroundColor = [UIColor orangeColor];
+        //绝对布局
         [view5 configureLayout:^(FBKLayout * _Nonnull layout) {
             layout.position = YGPositionTypeAbsolute;
             layout.kLeft = 10;
@@ -108,7 +109,11 @@
             layout.kHeight = 100;
         }];
         [root addChild:view5];
-        [root applyLayout];
+        [root.layout applyLayoutPreservingOrigin:NO];
+    });
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(9 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [root removeChild:view1];
+        [root.layout applyLayoutPreservingOrigin:NO];
     });
 }
 

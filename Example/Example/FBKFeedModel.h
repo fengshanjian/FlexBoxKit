@@ -1,14 +1,14 @@
 //
-//  CSSFeedModel.h
-//  CSSLayout
+//  FBKFeedModel.h
+//  FlexBoxLayout
 //
-//  Created by 沈强 on 2017/1/11.
-//  Copyright © 2017年 qiang.shen. All rights reserved.
+//  Created by will on 2018/8/29.
+//  Copyright © 2018年 will. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@interface FBFeedModel : NSObject
+@interface FBKFeedModel : NSObject
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 @property (nonatomic, copy, readonly) NSString *title;

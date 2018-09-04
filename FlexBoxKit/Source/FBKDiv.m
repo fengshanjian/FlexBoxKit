@@ -81,6 +81,23 @@
     }
 }
 
+- (void)insertChild:(id<FBKLayoutProtocol>)child atIndex:(NSInteger)index {
+    if([_children containsObject:child]) return;
+    [_children insertObject:child atIndex:index];
+    if(self.parentView){
+        [self addChildToView:child];
+    }
+}
+
+
+- (void)removeChildAtIndex:(NSInteger)index {
+    id<FBKLayoutProtocol> child = _children[index];
+    [_children removeObjectAtIndex:index];
+    [self.layout removeChild:child.layout];
+    [self removeChildFromView:child];
+}
+
+
 #pragma mark private method
 
 - (void)addChildToView:(id<FBKLayoutProtocol>)child{

@@ -1,14 +1,14 @@
 //
-//  CSSFPSGraph.h
-//  CSSLayout
+//  FBKFPSGraph.h
+//  FlexBoxLayout
 //
-//  Created by 沈强 on 2017/1/11.
-//  Copyright © 2017年 qiang.shen. All rights reserved.
+//  Created by will on 2018/8/29.
+//  Copyright © 2018年 will. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface FBFPSGraph : UIView
+@interface FBKFPSGraph : UIView
 
 @property (nonatomic, assign, readonly) NSUInteger FPS;
 @property (nonatomic, assign, readonly) NSUInteger maxFPS;

@@ -11,10 +11,6 @@
 @protocol FBKLayoutProtocol <NSObject>
 
 @required
-/**
- calculates the layout
- */
-- (void)applyLayout;
 
 /**
  children layout node
@@ -28,7 +24,11 @@
 
 - (void)addChild:(id<FBKLayoutProtocol>)child;
 
+- (void)insertChild:(id<FBKLayoutProtocol>)child atIndex:(NSInteger) index;
+
 - (void)removeChild:(id<FBKLayoutProtocol>)child;
+
+- (void)removeChildAtIndex:(NSInteger) index;
 
 - (void)removeAllChildren;
 

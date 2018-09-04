@@ -2,8 +2,8 @@
 //  FBKFeedView.m
 //  FlexBoxLayout_Example
 //
-//  Created by SmartRabbit on 2018/9/3.
-//  Copyright © 2018年 qiang.shen. All rights reserved.
+//  Created by will on 2018/8/29.
+//  Copyright © 2018年 will. All rights reserved.
 //
 
 #import "FBKFeedView.h"
@@ -21,7 +21,7 @@
 @end
 @implementation FBKFeedView
 
-- (instancetype)initWithModel:(FBFeedModel *)model {
+- (instancetype)initWithModel:(FBKFeedModel *)model {
     if (self = [super initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 0)]) {
         [self configView];
         [self configData:model];
@@ -51,7 +51,7 @@
     
 }
 
-- (void)configData:(FBFeedModel *)model {
+- (void)configData:(FBKFeedModel *)model {
     
     _titleLabel.attributedText = [[NSAttributedString alloc] initWithString:model.title attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:18]}];
     
@@ -71,20 +71,15 @@
     [_titleLabel configureLayout:^(FBKLayout * _Nonnull layout) {
         layout.kMarginTop = 10;
     }];
-    
-    
     [_contentLabel configureLayout:^(FBKLayout *layout) {
         layout.kMarginTop = 10;
     }];
-    
     [_contentImageView configureLayout:^(FBKLayout *layout) {
         layout.kMarginTop = 10;
     }];
-    
     [_usernameLabel configureLayout:^(FBKLayout *layout) {
         layout.flexGrow = 1.0;
     }];
-    
     [_timeLabel configureLayout:^(FBKLayout *layout) {
         layout.flexGrow = 1.0;
     }];
@@ -93,8 +88,9 @@
     [div configureLayout:^(FBKLayout *layout) {
         layout.flexDirection = YGFlexDirectionRow;
         layout.justifyContent = YGJustifySpaceBetween;
-        layout.alignItems = YGAlignFlexStart;
+        layout.alignItems = YGAlignCenter;
         layout.kMarginTop = 10;
+        layout.kWidth = [UIScreen mainScreen].bounds.size.width-30;
     }];
     [div addChild:_usernameLabel];
     [div addChild:_timeLabel];

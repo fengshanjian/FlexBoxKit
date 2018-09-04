@@ -1,14 +1,14 @@
 //
-//  CSSFeedModel.m
-//  CSSLayout
+//  FBKFeedModel.m
+//  FlexBoxLayout
 //
-//  Created by 沈强 on 2017/1/11.
-//  Copyright © 2017年 qiang.shen. All rights reserved.
+//  Created by will on 2018/8/29.
+//  Copyright © 2018年 will. All rights reserved.
 //
 
-#import "FBFeedModel.h"
+#import "FBKFeedModel.h"
 
-@implementation FBFeedModel
+@implementation FBKFeedModel
 
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary

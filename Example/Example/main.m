@@ -7,11 +7,11 @@
 //
 
 @import UIKit;
-#import "FBAppDelegate.h"
+#import "FBKAppDelegate.h"
 
 int main(int argc, char * argv[])
 {
     @autoreleasepool {
-        return UIApplicationMain(argc, argv, nil, NSStringFromClass([FBAppDelegate class]));
+        return UIApplicationMain(argc, argv, nil, NSStringFromClass([FBKAppDelegate class]));
     }
 }

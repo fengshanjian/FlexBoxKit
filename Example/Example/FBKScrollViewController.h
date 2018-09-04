@@ -1,5 +1,5 @@
 //
-//  FBKFeedView.h
+//  FBKScrollViewController.h
 //  FlexBoxLayout_Example
 //
 //  Created by will on 2018/8/29.
@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FBKFeedModel.h"
-@interface FBKFeedView : UIView
-- (instancetype)initWithModel:(FBKFeedModel *)model;
+
+@interface FBKScrollViewController : UIViewController
+
 @end

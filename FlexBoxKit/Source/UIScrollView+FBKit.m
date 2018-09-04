@@ -8,6 +8,7 @@
 
 #import "UIScrollView+FBKit.h"
 #import <objc/runtime.h>
+#import "UIView+FBKit.h"
 
 @implementation UIScrollView (FBKit)
 
@@ -27,6 +28,8 @@
 - (void)setContentDiv:(FBKDiv *)fb_contentDiv {
     FBKDiv *contentDiv = [self contentDiv];
     if (contentDiv != fb_contentDiv) {
+        [self layout].isEnabled = YES;
+        [self addChild:fb_contentDiv];
         objc_setAssociatedObject(self, @selector(contentDiv), fb_contentDiv, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
 }
