@@ -1,8 +1,9 @@
 # FlexBoxKit
 
-[![Version](https://img.shields.io/cocoapods/v/FlexBoxLayout.svg?style=flat)](http://cocoapods.org/pods/FlexBoxLayout)
-[![License](https://img.shields.io/cocoapods/l/FlexBoxLayout.svg?style=flat)](http://cocoapods.org/pods/FlexBoxLayout)
-[![Platform](https://img.shields.io/cocoapods/p/FlexBoxLayout.svg?style=flat)](http://cocoapods.org/pods/FlexBoxLayout)
+[![Version](https://img.shields.io/cocoapods/v/FlexBoxKit.svg?style=flat)](http://cocoapods.org/pods/FlexBoxKit)
+[![License](https://img.shields.io/cocoapods/l/FlexBoxKit.svg?style=flat)](http://cocoapods.org/pods/FlexBoxKit)
+[![Platform](https://img.shields.io/cocoapods/p/FlexBoxKit.svg?style=flat)](http://cocoapods.org/pods/FlexBoxKit)
+
 
 ## 特点（Feature）
 
@@ -34,6 +35,7 @@ open 'FlexBoxLayout.xcworkspace'
 ```ruby
 pod "FlexBoxKit"
 ```
+
 
 ## 使用
 
@@ -133,6 +135,12 @@ Here are some simple uses
     contentView.contentDiv = root;
     [contentView.layout applyLayoutPreservingOrigin:NO];
 ```
+
+#### 备注 (remark)
+
+* 请使用addChild取代addSubview
+  Please Use addChild to replace addSubview
+* kWidth kMargin ... layout.kWidth = 10 等同于(equals) layout.width = YGPointValue(10)
 
 ### 2. 绝对布局(absolute layout)
 FlexBox中position=absolute的使用
