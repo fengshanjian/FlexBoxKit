@@ -115,6 +115,17 @@
         [root removeChild:view1];
         [root.layout applyLayoutPreservingOrigin:NO];
     });
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(12 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [UIView animateWithDuration:0.5f animations:^{
+            [view3 configureLayout:^(FBKLayout * _Nonnull layout) {
+                layout.kHeight = 50;
+            }];
+            [root.layout applyLayoutPreservingOrigin:NO];
+        } completion:^(BOOL finished) {
+           
+        }];
+    });
 }
 
 
