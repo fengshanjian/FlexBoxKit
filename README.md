@@ -14,7 +14,7 @@
 
 ## 预览
 
-![](https://github.com/LPD-iOS/FlexBoxLayout/blob/master/Example/Example/show.gif)
+![](https://github.com/fengshanjian/FlexBoxKit/blob/master/Example/Example/show.gif)
 
 ## 示例
 
@@ -24,15 +24,17 @@
 或执行以下命令：
 
 ```bash
-git clone git@github.com:LPD-iOS/FlexBoxLayout.git; cd FlexBoxLayout/Example; open 'FlexBoxLayout.xcworkspace'
+git clone git@github.com:fengshanjian/FlexBoxKit.git
+cd FlexBoxKit/Example
+open 'FlexBoxLayout.xcworkspace'
 ```
 
 ## 安装
 
-FlexBoxLayout 可以通过 [CocoaPods](http://cocoapods.org) 进行获取。只需要在你的 Podfile 中添加如下代码就能实现引入：
+FlexBoxKit 可以通过 [CocoaPods](http://cocoapods.org) 进行获取。只需要在你的 Podfile 中添加如下代码就能实现引入：
 
 ```ruby
-pod "FlexBoxLayout"
+pod "FlexBoxKit"
 ```
 
 然后，执行如下命令即可：
@@ -47,40 +49,50 @@ $ pod install
 
 - (void)layoutView {
 
-  [self fb_makeLayout:^(FBLayout *layout) {
-    layout.flexDirection.equalTo(@(FBFlexDirectionColumn)).margin.equalToEdgeInsets(UIEdgeInsetsMake(0, 15, 0, 15)).alignItems.equalTo(@(FBAlignFlexStart));
-  }];
-
-  [_titleLabel fb_makeLayout:^(FBLayout *layout) {
-    layout.margin.equalToEdgeInsets(UIEdgeInsetsMake(10, 0, 0, 0)).wrapContent();
-  }] ;
-  
-
-  [_contentLabel fb_makeLayout:^(FBLayout *layout) {
-    layout.margin.equalToEdgeInsets(UIEdgeInsetsMake(10, 0, 0, 0)).wrapContent();
-  }];
-
-  [_contentImageView fb_makeLayout:^(FBLayout *layout) {
-    layout.margin.equalToEdgeInsets(UIEdgeInsetsMake(10, 0, 0, 0)).wrapContent();
-  }];
-
-  [_usernameLabel fb_makeLayout:^(FBLayout *layout) {
-    layout.wrapContent().flexGrow.equalTo(@(1.0));
-  }];
-
-  [_timeLabel fb_makeLayout:^(FBLayout *layout) {
-    layout.wrapContent().flexGrow.equalTo(@(1.0));
-  }];
-
-  FBLayoutDiv *div = [FBLayoutDiv layoutDivWithFlexDirection:FBFlexDirectionRow ];
-
-  [div fb_makeLayout:^(FBLayout *layout) {
-  layout.flexDirection.equalTo(@(FBFlexDirectionRow)).justifyContent.equalTo(@(FBJustifySpaceBetween)).alignItems.equalTo(@(FBAlignFlexStart)).margin.equalToEdgeInsets(UIEdgeInsetsMake(10, 0, 0, 0));
-  }];
-
-  div.fb_children = @[_usernameLabel,_timeLabel];
-
-  self.fb_children =@[_titleLabel,_contentLabel,_contentImageView,div];
+    UIView *root = self.view;
+    [root configureLayout:^(FBKLayout * _Nonnull layout) {
+        layout.width = YGPointValue(self.view.bounds.size.width);
+        layout.height = YGPointValue(self.view.bounds.size.height);
+        layout.justifyContent = YGJustifyFlexStart;
+        layout.alignItems = YGAlignCenter;
+    }];
+    
+    UIView *view1 = [UIView new];
+    view1.backgroundColor = [UIColor greenColor];
+    [view1 configureLayout:^(FBKLayout * _Nonnull layout) {
+        layout.kWidth = 100;
+        layout.kHeight = 100;
+    }];
+    
+    [root addChild:view1];
+    
+    FBKDiv *div = [FBKDiv new];
+    [div configureLayout:^(FBKLayout * _Nonnull layout) {
+        layout.kWidth = 100;
+        layout.kHeight = 300;
+        layout.kMarginTop = 20;
+    }];
+    
+    UIView *view2 = [UIView new];
+    view2.backgroundColor = [UIColor blueColor];
+    [view2 configureLayout:^(FBKLayout * _Nonnull layout) {
+        layout.kWidth = 100;
+        layout.kHeight = 100;
+    }];
+      
+    [div addChild: view2];
+    
+    UIView *view3 = [UIView new];
+    [view3 configureLayout:^(FBKLayout * _Nonnull layout) {
+        layout.kWidth = 100;
+        layout.kHeight = 100;
+    }];
+    view3.backgroundColor = [UIColor redColor];
+    
+    [div addChild:view3];
+    
+    [root addChild:div];
+    [root.layout applyLayoutPreservingOrigin:NO];
 }
 
 ```
@@ -89,134 +101,136 @@ $ pod install
 
 These are some flexbox introduce [FlexBox(Chinese)](http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html), [A Complete Guide to Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) and [A Visual Guide to CSS3 Flexbox Properties](https://scotch.io/tutorials/a-visual-guide-to-css3-flexbox-properties)。
 
-### 1. UIView + FBLayout Usage
+### 1. UIView + FBKit && FBKDiv Usage
+
+FBKDiv是一个虚拟的view，用于分割不同的区域，避免使用太多view以至层级太多
+
+(FBKDiv is virtual view, split view to a different area, avoid too much view.)
 
 Here are some simple uses
 
 ```objc
-UIScrollView *contentView = [UIScrollView new];
-contentView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-44);
-[self.view addSubview:contentView];
+    UIScrollView *contentView = [UIScrollView new];
+    contentView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-(iPhoneX?83:49));
+    [self.view addSubview:contentView];
 
+    
+    UIView *child1 = [UIView new];
+    child1.backgroundColor = [UIColor blueColor];
+    [child1 configureLayout:^(FBKLayout * _Nonnull layout) {
+        layout.kWidth = 100;
+        layout.kHeight = 100;
+    }];
+    
+    UIView *child2 = [UIView new];
+    child2.backgroundColor = [UIColor greenColor];
+    [child2 configureLayout:^(FBKLayout * _Nonnull layout) {
+        layout.kWidth = 100;
+        layout.kHeight = 100;
+    }];
+    
+    UILabel *child3 = [UILabel new];
+    child3.numberOfLines = 0;
+    child3.backgroundColor = [UIColor yellowColor];
+    [child3 setAttributedText:[[NSAttributedString alloc] initWithString:@"testfdsfdsfdsfdsfdsfdsafdsafdsafasdkkk" attributes:@{NSFontAttributeName :[UIFont systemFontOfSize:18]}]];
+    child3.layout.isEnabled = YES;
+    FBKDiv *div1 = [FBKDiv new];
+    [div1 configureLayout:^(FBKLayout * _Nonnull layout) {
+        layout.justifyContent = YGJustifySpaceBetween;
+        layout.alignItems = YGAlignCenter;
+        layout.kMarginTop = 20;
+        layout.kWidth = 150;
+    }];
+    [div1 setChildren:@[child1,child2,child3]];
+    
+    
+    UIView *child5 = [UIView new];
+    child5.backgroundColor = [UIColor blueColor];
+    [child5 configureLayout:^(FBKLayout * _Nonnull layout) {
+        layout.kWidth = 50;
+        layout.kMarginBottom = 10;
+        layout.flexGrow = 1.0;
+    }];
+    
+    UIView *child6 = [UIView new];
+    child6.backgroundColor = [UIColor greenColor];
+    [child6 configureLayout:^(FBKLayout * _Nonnull layout) {
+        layout.kMargin = 10;
+        layout.kWidth = 50;
+        layout.flexGrow = 2.0;
+    }];
 
-UIView *child1 = [UIView new];
-child1.backgroundColor = [UIColor blueColor];
-
-[child1 fb_makeLayout:^(FBLayout *layout) {
-  layout.width.height.equalTo(@100);
-}];
-
-UIView *child2 = [UIView new];
-child2.backgroundColor = [UIColor greenColor];
-[child2 fb_makeLayout:^(FBLayout *layout) {
-  layout.equalTo(child1);
-}];
-
-
-UILabel *child3 = [UILabel new];
-child3.numberOfLines = 0;
-child3.backgroundColor = [UIColor yellowColor];
-[child3 fb_wrapContent];
-[child3 setAttributedText:[[NSAttributedString alloc] initWithString:@"testfdsfdsfdsfdsfdsfdsafdsafdsafasdkkk" attributes:@{NSFontAttributeName :[UIFont systemFontOfSize:18]}] ];
-
-[contentView addSubview:child1];
-[contentView addSubview:child2];
-[contentView addSubview:child3];
-
-
-FBLayoutDiv *div1 = [FBLayoutDiv layoutDivWithFlexDirection:FBFlexDirectionColumn
-                                               justifyContent:FBJustifySpaceBetween
-                                                   alignItems:FBAlignCenter
-                                                     children:@[child1, child2,child3]];
-
-
-
-[div1 fb_makeLayout:^(FBLayout *layout) {
-  layout.margin.equalToEdgeInsets(UIEdgeInsetsMake(20, 0, 0, 0));
-  layout.width.equalTo(@(150));
-}];
-
-
-UIView *child5 = [UIView new];
-child5.backgroundColor = [UIColor blueColor];
-
-child5.CSSStyles = @{FBWidthAttributeName:@(50),
-                     FBHeightAttributeName:@(50),
-                     FBMarginAttributeName:[NSValue valueWithUIEdgeInsets:UIEdgeInsetsMake(0, 0, 10, 0)],
-                     FBFlexGrowAttributeName:@1.0};
-
-UIView *child6 = [UIView new];
-child6.backgroundColor = [UIColor greenColor];
-[child6 fb_makeLayout:^(FBLayout *layout) {
-  layout.equalTo(child5);
-  layout.flexGrow.equalTo(@(2.0));
-   layout.margin.equalToEdgeInsets(UIEdgeInsetsMake(10, 10, 10, 10));
-}];
-
-
-UIView *child7 = [UIView new];
-child7.backgroundColor = [UIColor yellowColor];
-[child7 fb_makeLayout:^(FBLayout *layout) {
-  layout.equalTo(child5);
-}];
-
-UIView *child8 = [UIView new];
-child8.backgroundColor = [UIColor blackColor];
-
-[child8 fb_makeLayout:^(FBLayout *layout) {
-  layout.equalTo(child5);
-}];
-
-FBLayoutDiv *div2 =[FBLayoutDiv layoutDivWithFlexDirection:FBFlexDirectionColumn
-                                              justifyContent:FBJustifySpaceAround
-                                                  alignItems:FBAlignCenter
-                                                    children:@[child5,child6,child7,child8]];
-[div2 fb_makeLayout:^(FBLayout *layout) {
-  layout.margin.equalToEdgeInsets(UIEdgeInsetsMake(20, 0, 0, 0));
-  layout.width.equalTo(@(150));
-}];
-
-[contentView addSubview:child5];
-[contentView addSubview:child6];
-[contentView addSubview:child7];
-[contentView addSubview:child8];
-
-FBLayoutDiv *root = [FBLayoutDiv layoutDivWithFlexDirection:FBFlexDirectionRow
-                                               justifyContent:FBJustifySpaceAround
-                                                   alignItems:FBAlignCenter
-                                                     children:@[div1,div2]];
-
-contentView.fb_contentDiv = root;
-[root fb_asyApplyLayoutWithSize:[UIScreen mainScreen].bounds.size];
+    
+    
+    UIView *child7 = [UIView new];
+    child7.backgroundColor = [UIColor yellowColor];
+    [child7 configureLayout:^(FBKLayout * _Nonnull layout) {
+        layout.kMarginBottom = 10;
+        layout.kWidth = 50;
+        layout.flexGrow = 1.0;
+    }];
+    
+    UIView *child8 = [UIView new];
+    child8.backgroundColor = [UIColor blackColor];
+    
+    [child8 configureLayout:^(FBKLayout * _Nonnull layout) {
+        layout.kMarginBottom = 10;
+        layout.kWidth = 50;
+        layout.flexGrow = 1.0;
+    }];
+    
+    FBKDiv *div2 = [FBKDiv new];
+    [div2 configureLayout:^(FBKLayout * _Nonnull layout) {
+        layout.justifyContent = YGJustifySpaceAround;
+        layout.alignItems = YGAlignCenter;
+        layout.kMarginTop = 20;
+        layout.kWidth = 50;
+        layout.kHeight = 800;
+    }];
+    [div2 setChildren:@[child5,child6,child7,child8]];
+    
+    FBKDiv *root = [FBKDiv new];
+    [root configureLayout:^(FBKLayout * _Nonnull layout) {
+        layout.flexDirection = YGFlexDirectionRow;
+        layout.justifyContent = YGJustifySpaceAround;
+        layout.alignItems = YGAlignCenter;
+    }];
+    [root setChildren:@[div1,div2]];
+    contentView.contentDiv = root;
+    [contentView.layout applyLayoutPreservingOrigin:NO];
 ```
 
-### 2. FBLayoutDiv
+### 2. 绝对布局(absolute layout)
+FlexBox中position=absolute的使用
 
-FBLayoutDiv is virtual view, split view to a different area, avoid too much view.
+(Absolute layout of FlexBox)
 
 ```objc
-
-FBLayoutDiv *div1 = [FBLayoutDiv layoutDivWithFlexDirection:FBFlexDirectionColumn
-                                               justifyContent:FBJustifySpaceBetween
-                                                   alignItems:FBAlignCenter
-                                                     children:@[child1, child2,child3]];
-                                
-FBLayoutDiv *div2 =[FBLayoutDiv layoutDivWithFlexDirection:FBFlexDirectionColumn
-                                              justifyContent:FBJustifySpaceAround
-                                                  alignItems:FBAlignCenter
-                                                    children:@[child5,child6,child7,child8]];
-root.fb_children = @[div1,div2];                                
+    UIView *view5 = [UIView new];
+    view5.backgroundColor = [UIColor orangeColor];
+    //绝对布局 absolute layout
+    [view5 configureLayout:^(FBKLayout * _Nonnull layout) {
+        layout.position = YGPositionTypeAbsolute;
+        layout.kLeft = 10;
+        layout.kTop = 64;
+        layout.kWidth = 100;
+        layout.kHeight = 100;
+    }];
+    [root addChild:view5];
+    [root.layout applyLayoutPreservingOrigin:NO];
                                                        
 ```
 
 ### 3. UITableView+FBLayout
 
-UITableView+FBLayout is category of UITableView. It support auto cell height of FBLayout and easy use.
- 
+自动cell高度计算
+
+(UITableView+FBLayout is category of UITableView. It support auto cell height of FBLayout and easy use.)
+
 ```objc
-[self.tableView fb_setCellContnetViewBlockForIndexPath:^UIView *(NSIndexPath *indexPath) {
-  return [[FBFeedView alloc]initWithModel:weakSelf.sections[indexPath.section][indexPath.row]];
-}];
+ [self.tableView fb_setCellContnetViewBlockForIndexPath:^UIView *(NSIndexPath *indexPath) {
+    return [[FBKFeedView alloc]initWithModel:weakSelf.sections[indexPath.section][indexPath.row]];
+  }];
 
 ....
 
@@ -224,22 +238,27 @@ UITableView+FBLayout is category of UITableView. It support auto cell height of 
   return [self.tableView fb_heightForIndexPath:indexPath];
 }
 
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   return [self.tableView fb_cellForIndexPath:indexPath];
 }
 ```
 
-### 4. UIScrollView+FBLayout
+### 4. UIScrollView+FBKit
 
-It support auto content size:
+自动contentSize计算
+
+(It support auto content size)
 
 ```objc
-FBLayoutDiv *root = [FBLayoutDiv layoutDivWithFlexDirection:FBFlexDirectionRow
-                                               justifyContent:FBJustifySpaceAround
-                                                   alignItems:FBAlignCenter
-                                                     children:@[div1,div2]];
-
-contentView.fb_contentDiv = root;
+    FBKDiv *root = [FBKDiv new];
+    [root configureLayout:^(FBKLayout * _Nonnull layout) {
+        layout.flexDirection = YGFlexDirectionRow;
+        layout.justifyContent = YGJustifySpaceAround;
+        layout.alignItems = YGAlignCenter;
+    }];
+    [root setChildren:@[div1,div2]];
+    contentView.contentDiv = root;
 ```
 
 ### 5. Flexbox container properties
@@ -427,10 +446,17 @@ FBAlignFlexStart;
 
 ## 作者
 
-qiang.shen
+will
+
+## 感谢
+该项目是基于[YogaKit](https://github.com/facebook/yoga/tree/master/YogaKit) 的二次封装，基本保留了YogaKit的所有特点，同时参照[FlexBoxLayout](https://github.com/carlSQ/FlexBoxLayout)，将virtual Div以及TableView的cache机制引入，所以项目中很多FlexBoxLayout项目的影子在，甚至很多都未做修改(拿来主义)，在此感谢@carlSQ，同时感谢Facebook对yoga的开源。
 
 ## 协议
 
 ![](https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/License_icon-mit-88x31-2.svg/128px-License_icon-mit-88x31-2.svg.png)
 
-FlexBoxLayout 基于 MIT 协议进行分发和使用，更多信息参见协议文件。
+FlexBoxKit 基于 MIT 协议进行分发和使用，更多信息参见协议文件。
+MIT License
+
+Copyright (c) 2018 will
+
