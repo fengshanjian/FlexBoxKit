@@ -4,19 +4,19 @@
 [![License](https://img.shields.io/cocoapods/l/FlexBoxLayout.svg?style=flat)](http://cocoapods.org/pods/FlexBoxLayout)
 [![Platform](https://img.shields.io/cocoapods/p/FlexBoxLayout.svg?style=flat)](http://cocoapods.org/pods/FlexBoxLayout)
 
-## 特点
+## 特点（Feature）
 
 * Flexbox Layout；
-* 虚拟视图 Div；
-* TableView 支持自动高度、布局缓存，contentView 缓存，和自动 cache 失效机制；
-* ScrollView 支持自适应 contentSize；
-* 依赖yoga最新版本
+* 虚拟视图 (Virtual Div)
+* TableView 支持自动高度、布局缓存，contentView 缓存，和自动 cache 失效机制；( It support auto cell height of FBLayout and easy use)
+* ScrollView 支持自适应 contentSize；(contentSize auto contentSize)
+* 依赖yoga最新版本 (base on the newest version of yoga)
 
-## 预览
+## 预览（Preview）
 
 ![](https://github.com/fengshanjian/FlexBoxKit/blob/master/Example/Example/show.gif)
 
-## 示例
+## 示例 (example)
 
 1. 利用 `git clone` 命令下载本仓库, `Examples` 目录包含了示例程序；
 2. 用 XCode 打开对应项目编译即可。
@@ -29,72 +29,10 @@ cd FlexBoxKit/Example
 open 'FlexBoxLayout.xcworkspace'
 ```
 
-## 安装
-
-FlexBoxKit 可以通过 [CocoaPods](http://cocoapods.org) 进行获取。只需要在你的 Podfile 中添加如下代码就能实现引入：
+## 安装 (Install)
 
 ```ruby
 pod "FlexBoxKit"
-```
-
-然后，执行如下命令即可：
-
-```bash
-$ pod install
-```
-
-## 示例代码
-
-```objc
-
-- (void)layoutView {
-
-    UIView *root = self.view;
-    [root configureLayout:^(FBKLayout * _Nonnull layout) {
-        layout.width = YGPointValue(self.view.bounds.size.width);
-        layout.height = YGPointValue(self.view.bounds.size.height);
-        layout.justifyContent = YGJustifyFlexStart;
-        layout.alignItems = YGAlignCenter;
-    }];
-    
-    UIView *view1 = [UIView new];
-    view1.backgroundColor = [UIColor greenColor];
-    [view1 configureLayout:^(FBKLayout * _Nonnull layout) {
-        layout.kWidth = 100;
-        layout.kHeight = 100;
-    }];
-    
-    [root addChild:view1];
-    
-    FBKDiv *div = [FBKDiv new];
-    [div configureLayout:^(FBKLayout * _Nonnull layout) {
-        layout.kWidth = 100;
-        layout.kHeight = 300;
-        layout.kMarginTop = 20;
-    }];
-    
-    UIView *view2 = [UIView new];
-    view2.backgroundColor = [UIColor blueColor];
-    [view2 configureLayout:^(FBKLayout * _Nonnull layout) {
-        layout.kWidth = 100;
-        layout.kHeight = 100;
-    }];
-      
-    [div addChild: view2];
-    
-    UIView *view3 = [UIView new];
-    [view3 configureLayout:^(FBKLayout * _Nonnull layout) {
-        layout.kWidth = 100;
-        layout.kHeight = 100;
-    }];
-    view3.backgroundColor = [UIColor redColor];
-    
-    [div addChild:view3];
-    
-    [root addChild:div];
-    [root.layout applyLayoutPreservingOrigin:NO];
-}
-
 ```
 
 ## 使用
@@ -113,7 +51,6 @@ Here are some simple uses
     UIScrollView *contentView = [UIScrollView new];
     contentView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-(iPhoneX?83:49));
     [self.view addSubview:contentView];
-
     
     UIView *child1 = [UIView new];
     child1.backgroundColor = [UIColor blueColor];
@@ -143,7 +80,6 @@ Here are some simple uses
     }];
     [div1 setChildren:@[child1,child2,child3]];
     
-    
     UIView *child5 = [UIView new];
     child5.backgroundColor = [UIColor blueColor];
     [child5 configureLayout:^(FBKLayout * _Nonnull layout) {
@@ -160,8 +96,6 @@ Here are some simple uses
         layout.flexGrow = 2.0;
     }];
 
-    
-    
     UIView *child7 = [UIView new];
     child7.backgroundColor = [UIColor yellowColor];
     [child7 configureLayout:^(FBKLayout * _Nonnull layout) {
@@ -237,7 +171,6 @@ FlexBox中position=absolute的使用
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
   return [self.tableView fb_heightForIndexPath:indexPath];
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   return [self.tableView fb_cellForIndexPath:indexPath];
