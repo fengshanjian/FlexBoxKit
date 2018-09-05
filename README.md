@@ -209,25 +209,25 @@ FlexBox中position=absolute的使用
 This property specifies how flex items are laid out in the flex container, by setting the direction of the flex container’s main axis. They can be laid out in two main directions, like rows horizontally or like columns vertically.
 
 ```objc
-FBFlexDirectionRow;
+YGFlexDirectionRow;
 ```
 
 ![ROW](https://cask.scotch.io/2015/04/flexbox-flex-direction-row.jpg)
 
 ```objc
-FBFlexDirectionRowReverse;
+YGFlexDirectionRowReverse;
 ```
 
 ![RowReverse](https://cask.scotch.io/2015/04/flexbox-flex-direction-row-reverse.jpg)
 
 ```objc
-FBFlexDirectionColumn;
+YGFlexDirectionColumn;
 ```
 
 ![Colum](https://cask.scotch.io/2015/04/flexbox-flex-direction-column.jpg)
 
 ```objc
-FBFlexDirectionColumnReverse;
+YGFlexDirectionColumnReverse;
 ```
 
 ![ColumReverse](https://cask.scotch.io/2015/04/flexbox-flex-direction-column-reverse.jpg)
@@ -237,13 +237,13 @@ FBFlexDirectionColumnReverse;
 The initial flexbox concept is the container to set its items in one single line. The flex-wrap property controls if the flex container lay out its items in single or multiple lines, and the direction the new lines are stacked in.Supports only 'nowrap' (which is the default) or 'wrap'
 
 ```objc
-FBWrapNoWrap;
+YGWrapNoWrap;
 ```
 
 ![noWrap](https://cask.scotch.io/2015/04/flexbox-flex-wrap-nowrap.jpg)
 
 ```objc
-FBWrapWrap;
+YGWrapWrap;
 ```
 
 ![noWrap](https://cask.scotch.io/2015/04/flexbox-flex-wrap-wrap.jpg)
@@ -253,31 +253,31 @@ FBWrapWrap;
 The justify-content property aligns flex items along the main axis of the current line of the flex container. It helps distribute left free space when either all the flex items on a line are inflexible, or are flexible but have reached their maximum size.
 
 ```objc
-FBJustifyFlexStart;
+YGJustifyFlexStart;
 ```
 
 ![JustifyFlexStart](https://cask.scotch.io/2015/04/flexbox-justify-content-flex-start.jpg)
 
 ```objc
-FBJustifyCenter;
+YGJustifyCenter;
 ```
 
 ![JustifyFlexStart](https://cask.scotch.io/2015/04/flexbox-justify-content-center.jpg)
 
 ```objc
-FBJustifyFlexEnd
+YGJustifyFlexEnd
 ```
 
 ![JustifyFlexStart](https://cask.scotch.io/2015/04/flexbox-justify-content-flex-end.jpg)
 
 ```objc
-FBJustifySpaceBetween;
+YGJustifySpaceBetween;
 ```
 
 ![JustifyFlexStart](https://cask.scotch.io/2015/04/flexbox-justify-content-space-between.jpg)
 
 ```objc
-FBJustifySpaceAround;
+YGJustifySpaceAround;
 ```
 
 ![JustifyFlexStart](https://cask.scotch.io/2015/04/flexbox-justify-content-space-around.jpg)
@@ -287,25 +287,25 @@ FBJustifySpaceAround;
 Flex items can be aligned in the cross axis of the current line of the flex container, similar to justify-content but in the perpendicular direction. This property sets the default alignment for all flex items, including the anonymous ones.
 
 ```objc
-FBAlignFlexStart;
+YGAlignFlexStart;
 ```
 
 ![CSSAlignFlexStart](https://cask.scotch.io/2015/04/flexbox-align-items-flex-start.jpg)
 
 ```objc
-FBAlignCenter;
+YGAlignCenter;
 ```
 
 ![CSSAlignCenter](https://cask.scotch.io/2015/04/flexbox-align-items-center.jpg)
 
 ```objc
-FBAlignFlexEnd;
+YGAlignFlexEnd;
 ```
 
 ![CSSAlignFlexEnd](https://cask.scotch.io/2015/04/flexbox-align-items-flex-end.jpg)
 
 ```objc
-FBAlignStretch;
+YGAlignStretch;
 ```
 
 ![CSSAlignStretch](https://cask.scotch.io/2015/04/flexbox-align-items-stretch.jpg)
@@ -315,26 +315,26 @@ FBAlignStretch;
 The align-content property aligns a flex container’s lines within the flex container when there is extra space in the cross-axis, similar to how justify-content aligns individual items within the main-axis.
 
 ```objc
-FBAlignFlexStart;
+YGAlignFlexStart;
 ```
 
 ![CSSAlignFlexStart](https://cask.scotch.io/2015/04/flexbox-align-content-flex-start.jpg)
 
 
 ```objc
-FBAlignCenter;
+YGAlignCenter;
 ```
 
 ![CSSAlignFlexStart](https://cask.scotch.io/2015/04/flexbox-align-content-center.jpg)
 
 ```objc
-FBAlignFlexEnd;
+YGAlignFlexEnd;
 ```
 
 ![CSSAlignFlexStart](https://cask.scotch.io/2015/04/flexbox-align-content-flex-end.jpg)
 
 ```objc
-FBAlignStretch;
+YGAlignStretch;
 ```
 
 ![CSSAlignFlexStart](https://cask.scotch.io/2015/04/flexbox-align-content-stretch.jpg)
@@ -380,7 +380,7 @@ FlexBasis:350;
 This align-self property allows the default alignment (or the one specified by align-items) to be overridden for individual flex items. Refer to align-items explanation for flex container to understand the available values.
 
 ```objc
-FBAlignFlexStart;
+YGAlignFlexStart;
 ```
 
 ![align-self](https://cask.scotch.io/2015/04/flexbox-align-self.jpg)
