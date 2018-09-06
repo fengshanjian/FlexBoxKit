@@ -65,12 +65,12 @@
     [self.layout applyLayoutPreservingOrigin:NO];
 }
 
-- (void)removeAllChildren {
-    [_children removeAllObjects];
+- (void)removeAllChildren {    
     [self.layout removeAllChildren];
     for (id<FBKLayoutProtocol> child in self.children) {
         [self removeChildFromView:child];
     }
+    [_children removeAllObjects];
 }
 
 - (void)removeChild:(id<FBKLayoutProtocol>)child {

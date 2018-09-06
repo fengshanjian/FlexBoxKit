@@ -93,7 +93,11 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [div removeChild:view4];
         label.text=@"223444444444";
-        [label.layout markDirty];
+        
+        [label configureLayout:^(FBKLayout * _Nonnull layout) {
+            layout.flexWrap = YGWrapWrap;
+        }];
+        // or [label.layout markDirty];
         [div.layout applyLayoutPreservingOrigin:YES];
     });
     
